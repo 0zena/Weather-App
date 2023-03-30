@@ -1,0 +1,16 @@
+C:\Users\USER\source\repos\WeatherApp\WeatherApp\bin\Debug\WeatherApp.exe.config
+C:\Users\USER\source\repos\WeatherApp\WeatherApp\bin\Debug\WeatherApp.exe
+C:\Users\USER\source\repos\WeatherApp\WeatherApp\bin\Debug\WeatherApp.pdb
+C:\Users\USER\source\repos\WeatherApp\WeatherApp\bin\Debug\Newtonsoft.Json.dll
+C:\Users\USER\source\repos\WeatherApp\WeatherApp\bin\Debug\Newtonsoft.Json.xml
+C:\Users\USER\source\repos\WeatherApp\WeatherApp\obj\Debug\WeatherApp.csproj.AssemblyReference.cache
+C:\Users\USER\source\repos\WeatherApp\WeatherApp\obj\Debug\WeatherApp.Form1.resources
+C:\Users\USER\source\repos\WeatherApp\WeatherApp\obj\Debug\WeatherApp.Properties.Resources.resources
+C:\Users\USER\source\repos\WeatherApp\WeatherApp\obj\Debug\WeatherApp.csproj.GenerateResource.cache
+C:\Users\USER\source\repos\WeatherApp\WeatherApp\obj\Debug\WeatherApp.csproj.CoreCompileInputs.cache
+C:\Users\USER\source\repos\WeatherApp\WeatherApp\obj\Debug\WeatherApp.csproj.CopyComplete
+C:\Users\USER\source\repos\WeatherApp\WeatherApp\obj\Debug\WeatherApp.exe
+C:\Users\USER\source\repos\WeatherApp\WeatherApp\obj\Debug\WeatherApp.pdb
+C:\Users\USER\source\repos\WeatherApp\WeatherApp\obj\Debug\WeatherApp.Form2.resources
+C:\Users\USER\source\repos\WeatherApp\WeatherApp\obj\Debug\Interop.IWshRuntimeLibrary.dll
+C:\Users\USER\source\repos\WeatherApp\WeatherApp\obj\Debug\WeatherApp.csproj.ResolveComReference.cache
