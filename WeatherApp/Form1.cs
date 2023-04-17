@@ -1,14 +1,17 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Net;
 using System.Windows.Forms;
 using Newtonsoft.Json;
 using IWshRuntimeLibrary;
+using System.Drawing;
 
 namespace WeatherApp
 {
     public partial class Form1 : Form
     {
+        private string City;
+
         public Form1()
         {
             InitializeComponent();
@@ -19,9 +22,10 @@ namespace WeatherApp
             string folder = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
             Shortcut(folder);
 
-            #region Current Weather API 
-            string city = "Riga";
-            string url = $"https://api.openweathermap.org/data/2.5/weather?&q={city}&lang=en&appid={APIKEY}&units=metric";
+            #region Current Weather API
+            if (string.IsNullOrEmpty(City)) { City = "Riga"; }
+
+            string url = $"https://api.openweathermap.org/data/2.5/weather?&q={City}&lang=en&appid=154d1eeac867d0df4b0eba68a5638835&units=metric";
 
             HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
             HttpWebResponse httpWebResponse = (HttpWebResponse)httpWebRequest.GetResponse();
@@ -47,9 +51,11 @@ namespace WeatherApp
             // Details
             label2.Text = "Today`s details";
             label4.Text = "Sunrise: " + sunrise.LocalDateTime.ToString("HH:mm");
-            label9.Text = "Sunset: " + sunset.LocalDateTime.ToString("HH.mm");
-            label11.Text = "Max: " + weatherResponse.Main.MaxTemperature + "°C";
-            label12.Text = "Min: " + weatherResponse.Main.MinTemperature + "°C";
+            label9.Text = "Sunset: " + sunset.LocalDateTime.ToString("HH:mm");
+            label11.Text = "Max: " + Math.Round(weatherResponse.Main.MaxTemperature) + "°C";
+            label12.Text = "Min: " + Math.Round(weatherResponse.Main.MinTemperature) + "°C";
+
+            pictureBox1.Load($"https://openweathermap.org/img/wn/{WeatherData.WeatherInfo[0].Icon}@2x.png");
 
             // Header Clock
             label10.Text = DateTime.Now.ToString("HH:mm");
@@ -81,15 +87,19 @@ namespace WeatherApp
             string fileName = folder + "\\" + ProductName + ".lnk";
             IWshShortcut shortcut = (IWshShortcut)wshShell.CreateShortcut(fileName);
             shortcut.TargetPath = Application.ExecutablePath;
-            shortcut.IconLocation = "Resources\\icon.ico";
             shortcut.Save();
+        }
+
+        public void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            City = textBox1.Text;
+            InitializeComponent();
         }
     }
 
     #region Json
     public class WeatherData 
     {
-        
         public TemperatureData Main { get; set; }
 
         [JsonProperty("name")]
@@ -138,6 +148,9 @@ namespace WeatherApp
     {
         [JsonProperty("description")]
         public string Description { get; set; }
+        
+        [JsonProperty("icon")]
+        public string Icon { get; set; }
     }
     #endregion
 }
