@@ -1,7 +1,7 @@
 <h1>Weather-App</h1>
-Weather app using OpenWeatherMap API and Windows Forms for the GUI\n\n
+Weather app using <a href="https://openweathermap.org/">OpenWeatherMap</a> API and Windows Forms for the GUI
 
-Example of working with current API and list-type API response\n
+Example of working with current API and list-type API response
 
 <h3>HTTP request USAGE</h3>
 <ol>
