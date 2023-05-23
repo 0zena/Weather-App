@@ -28,7 +28,7 @@ namespace WeatherApp
 
             #region Current Weather API 
             string city = "Riga";
-            string url = $"https://api.openweathermap.org/data/2.5/weather?&q={city}&lang=en&appid={APIKEY}&units=metric";
+            string url = $"https://api.openweathermap.org/data/2.5/weather?&q={City}&lang=en&appid={key}&units=metric";
 
             HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
             HttpWebResponse httpWebResponse = (HttpWebResponse)httpWebRequest.GetResponse();
