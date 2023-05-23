@@ -26,8 +26,6 @@ namespace WeatherApp
             string folder = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
             Shortcut(folder);
 
-            #region Current Weather API
-            string url = $"https://api.openweathermap.org/data/2.5/weather?&q={City}&lang=en&appid={key}&units=metric";
             #region Current Weather API 
             string city = "Riga";
             string url = $"https://api.openweathermap.org/data/2.5/weather?&q={city}&lang=en&appid={APIKEY}&units=metric";
