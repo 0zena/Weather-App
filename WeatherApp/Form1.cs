@@ -7,6 +7,7 @@ using IWshRuntimeLibrary;
 using System.Collections.Generic;
 using System.Globalization;
 
+
 namespace WeatherApp
 {
     public partial class Form1 : Form
@@ -27,7 +28,6 @@ namespace WeatherApp
             Shortcut(folder);
 
             #region Current Weather API 
-            string city = "Riga";
             string url = $"https://api.openweathermap.org/data/2.5/weather?&q={City}&lang=en&appid={key}&units=metric";
 
             HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
@@ -72,7 +72,7 @@ namespace WeatherApp
             label11.Text = "Max: " + Math.Round(weatherResponse.Main.MaxTemperature) + "°C";
             label12.Text = "Min: " + Math.Round(weatherResponse.Main.MinTemperature) + "°C";
 
-            pictureBox1.LoadAsync($"https://openweathermap.org/img/wn/{WeatherData.WeatherInfo[0].Icons}@2x.png");
+            pictureBox1.Load($"http://openweathermap.org/img/wn/{WeatherData.WeatherInfo[0].Icons}@2x.png");
 
             // Header Clock
             label10.Text = DateTime.Now.ToString("HH:mm");
@@ -82,6 +82,7 @@ namespace WeatherApp
             try
             {
                 List<string> ForecastList = new List<string>();
+                List<string> ForecastIconCode = new List<string>();
 
                 for (int i = 0; i < forecasts.Count; i++)
                 {
@@ -89,15 +90,23 @@ namespace WeatherApp
                     {
                         string DatePath = DateTime.ParseExact(forecasts[i].DateText.Substring(0, 10), "yyyy-MM-dd", CultureInfo.InvariantCulture).ToString("dddd");
                         string listItem = $"\t{DatePath}\nTemperature: {Math.Round(forecasts[i].Main.Temperature)}°C\nHumidity: {forecasts[i].Main.Humidity}\n";
+                        string iconCode = forecasts[i].Info[0].Icon;
+                        ForecastIconCode.Add(iconCode);
                         ForecastList.Add(listItem);
                     }
                 }
                 #region Second Panel Labels
+                // Temp, Humidity, Date
                 label13.Text = DateTime.Now.ToString("HH:mm");
                 label15.Text = ForecastList[1];
                 label16.Text = ForecastList[2];
                 label17.Text = ForecastList[3];
                 label18.Text = ForecastList[4];
+                // Icons
+                pictureBox2.Load($"http://openweathermap.org/img/wn/{ForecastIconCode[0]}@2x.png");
+                pictureBox3.Load($"http://openweathermap.org/img/wn/{ForecastIconCode[1]}@2x.png");
+                pictureBox4.Load($"http://openweathermap.org/img/wn/{ForecastIconCode[2]}@2x.png");
+                pictureBox5.Load($"http://openweathermap.org/img/wn/{ForecastIconCode[3]}@2x.png");
                 #endregion
             }
             catch (Exception exception)
@@ -213,7 +222,11 @@ namespace WeatherApp
 
         [JsonProperty("main")]
         public MainInfo Main { get; set; }
+
+        [JsonProperty("weather")]
+        public ForecastInfo[] Info { get; set; }
     }
+
     public class MainInfo
     {
         [JsonProperty("temp")]
@@ -223,5 +236,10 @@ namespace WeatherApp
         public int Humidity { get; set; }
     }
 
+    public class ForecastInfo
+    {
+        [JsonProperty("icon")]
+        public string Icon { get; set; }
+    }
     #endregion
 }
